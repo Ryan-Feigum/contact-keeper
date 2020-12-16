@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { check, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator/check');
 
 const User = require('../models/User');
 
@@ -61,6 +61,7 @@ router.post(
                 },
                 (err, token) => {
                     if (err) throw err;
+
                     res.json({ token });
                 }
             );
