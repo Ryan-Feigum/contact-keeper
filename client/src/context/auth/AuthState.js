@@ -35,8 +35,9 @@ const AuthState = (props) => {
             const res = await axios.get('/api/auth');
 
             dispatch({ type: USER_LOADED, payload: res.data });
-        } catch (err) {}
-        dispatch({ type: AUTH_ERROR });
+        } catch (err) {
+            dispatch({ type: AUTH_ERROR });
+        }
     };
 
     // Register User
