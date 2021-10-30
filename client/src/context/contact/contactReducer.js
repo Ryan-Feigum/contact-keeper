@@ -9,6 +9,7 @@ import {
     FILTER_CONTACTS,
     CLEAR_FILTER,
     CONTACT_ERROR,
+    CLEAR_CONTACTS,
 } from '../types';
 
 export default (state, action) => {
@@ -20,7 +21,11 @@ export default (state, action) => {
                 loading: false,
             };
         case ADD_CONTACT:
-            return { ...state, contacts: [...state.contacts, action.payload] };
+            return {
+                ...state,
+                contacts: [...state.contacts, action.payload],
+                loading: false,
+            };
         case UPDATE_CONTACT:
             return {
                 ...state,
@@ -36,6 +41,14 @@ export default (state, action) => {
                     (contact) => contact.id !== action.payload
                 ),
                 loading: false,
+            };
+        case CLEAR_CONTACTS:
+            return {
+                ...state,
+                contacts: null,
+                filtered: null,
+                error: null,
+                current: null,
             };
         case SET_CURRENT:
             return {
