@@ -4,10 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
 import {
+    GET_CONTACTS,
     ADD_CONTACT,
     DELETE_CONTACT,
     SET_CURRENT,
     CLEAR_CURRENT,
+    CLEAR_CONTACTS,
     UPDATE_CONTACT,
     FILTER_CONTACTS,
     CLEAR_FILTER,
@@ -23,6 +25,17 @@ const ContactState = (props) => {
     };
 
     const [state, dispatch] = useReducer(contactReducer, initialState);
+
+    // Get Contacts
+    const getContacts = async () => {
+        try {
+            const res = await axios.get('/api/contacts');
+
+            dispatch({ type: GET_CONTACTS, payload: res.data });
+        } catch (err) {
+            dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
+        }
+    };
 
     // Add Contact
     const addContact = async (contact) => {
