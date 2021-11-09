@@ -7,7 +7,7 @@ const app = express();
 // Connect Database
 connectDB();
 
-// Init MIddleware
+// Init Middleware
 app.use(express.json({ extended: false }));
 
 // Define Routes
@@ -25,6 +25,6 @@ if (process.env.node_env === 'production') {
     );
 }
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
